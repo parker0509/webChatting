@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql-chat
+    ports:
+      - "3307:3306" # 호스트 3307 -> 컨테이너 3306 연결
+    environment:
+      MYSQL_ROOT_PASSWORD: qwer1234  # 루트 계정 비밀번호
+      MYSQL_DATABASE: chat_db        # 생성할 DB 이름
+      MYSQL_USER: chat_user          # 일반 사용자 계정 (root 말고 다른 계정으로)
+      MYSQL_PASSWORD: chat_password  # 일반 사용자 비밀번호
+    volumes:
+      - mysql-data:/var/lib/mysql    # 데이터 영구 저장
+    restart: always
+
+volumes:
+  mysql-data:
