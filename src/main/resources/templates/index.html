@@ -59,8 +59,8 @@
 <div id="chat-container">
     <h2>웹소켓 채팅</h2>
     <div id="chat"></div>
-    <input type="text" id="username" placeholder="닉네임을 입력하세요" />
-    <input type="text" id="message" placeholder="메시지를 입력하세요" />
+    <input type="text" id="username" placeholder="닉네임을 입력하세요"/>
+    <input type="text" id="message" placeholder="메시지를 입력하세요"/>
     <button onclick="sendMessage()">전송</button>
 </div>
 
@@ -77,17 +77,20 @@
     socket.onclose = () => console.log("웹소켓 연결 종료!");
 
     function sendMessage() {
-        const username = document.getElementById("username").value;
-        const message = document.getElementById("message").value;
-        if (message.trim()) {
-            const messageObj = {
-                sender: username,
-                message: message
-            };
-            socket.send(JSON.stringify(messageObj));  // 메시지 객체를 JSON 형식으로 전송
-            document.getElementById("message").value = '';  // 텍스트박스 비우기
-        }
+    const username = document.getElementById("username").value;
+    const message = document.getElementById("message").value;
+    const timestamp = new Date().toISOString();  // 현재 시간을 ISO 형식으로 얻기
+    if (message.trim()) {
+        const messageObj = {
+            sender: username,
+            message: message,
+            timestamp: timestamp
+        };
+        socket.send(JSON.stringify(messageObj));  // 메시지 객체를 JSON 형식으로 전송
+        document.getElementById("message").value = '';  // 텍스트박스 비우기
     }
+}
+
 </script>
 
 </body>

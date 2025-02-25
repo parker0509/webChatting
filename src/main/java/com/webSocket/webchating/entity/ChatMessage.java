@@ -22,7 +22,6 @@ public class ChatMessage {
     private String message;
     private String timestamp;
 
-
     public ChatMessage(Long id, String sender, String message, String timestamp) {
         this.id = id;
         this.sender = sender;
@@ -33,5 +32,4 @@ public class ChatMessage {
     // 기본 생성자 추가
     public ChatMessage() {
     }
-
 }
